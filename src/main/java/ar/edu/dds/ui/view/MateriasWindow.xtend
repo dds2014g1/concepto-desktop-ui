@@ -52,11 +52,11 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		
 		listado.bindValueToProperty("materiaSeleccionada")
 		
-		this.crearDetalleDeMateria(panelContendor)
+		var panelDerecho = this.crearDetalleDeMateria(panelContendor)
 		
-		this.crearTablaDeNotas(mainPanel)
+		this.crearTablaDeNotas(panelDerecho)
 
-		this.crearAccionesDeNotas(mainPanel)
+		this.crearAccionesDeNotas(panelDerecho)
 	}
 
 	override protected addActions(Panel actionsPanel) {
@@ -65,9 +65,9 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 			.onClick [ | this.crearMateria ]
 	}
 
-	def protected crearTablaDeNotas(Panel mainPanel) {
+	def protected crearTablaDeNotas(Panel panelPadre) {
 
-		var table = new Table<Nota>(mainPanel, typeof(Nota))
+		var table = new Table<Nota>(panelPadre, typeof(Nota))
 		table.heigth = 200
 		table.width = 450
 		table.bindItemsToProperty("materiaSeleccionada.notas")
@@ -84,7 +84,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
 	}
 	
-	def crearDetalleDeMateria(Panel panelPadre) {
+	def Panel crearDetalleDeMateria(Panel panelPadre) {
 		
 		var detalleDeMateriaPanel = new Panel(panelPadre)
 		detalleDeMateriaPanel.setLayout(new VerticalLayout)
@@ -94,6 +94,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		labelNombre.bindValueToProperty("materiaSeleccionada.nombre")
 		labelNombre.fontSize = 14
 		
+		// Renglón 1
 		var renglon1Panel = new Panel(detalleDeMateriaPanel)
 		renglon1Panel.layout = new HorizontalLayout
 		
@@ -109,6 +110,27 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		
 		var labelAprobo = new Label(renglon1Panel)
 		labelAprobo.text = "Final Aprobado"
+		
+		// Renglón 2
+		var renglon2Panel = new Panel(detalleDeMateriaPanel)
+		renglon2Panel.layout = new HorizontalLayout
+		
+		var labelProfesor = new Label(renglon2Panel)
+		labelProfesor.text = "Profesor de cursada: "
+		
+		var textBoxProfesor = new TextBox(renglon2Panel)
+		textBoxProfesor.bindValueToProperty("materiaSeleccionada.profesor")
+		textBoxProfesor.width = 150
+		
+		// Renglón 3
+		var renglon3Panel = new Panel(detalleDeMateriaPanel)
+		renglon3Panel.layout = new HorizontalLayout
+		
+		var labelUbicacion = new Label(renglon3Panel)
+		labelUbicacion.text = "Ubicacion Materia: "
+		
+		detalleDeMateriaPanel
+		
 	}
 
 	def void crearAccionesDeNotas(Panel mainPanel) {
