@@ -9,7 +9,7 @@ class Nota {
 	@Property Integer valor
 	@Property LocalDate fecha
 	@Property String descripcion
-	@Property Boolean aprobado
+
 	
 	new(){}
 	
@@ -20,7 +20,7 @@ class Nota {
 		this.descripcion = descripcion
 	}
 	
-	def boolean aprobada (){
+	def boolean isAprobado (){
 		valor > 4
 	}
 		

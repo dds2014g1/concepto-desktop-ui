@@ -17,13 +17,12 @@ class CrearNuevaMateriaWindow extends Dialog<Materia>{
 	
 	new (WindowOwner owner){
 		super(owner, new Materia)
+		title = "Nueva Materia"
+		taskDescription = "Ingrese nueva materia"
 		
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		
-		title = "Nueva Materia"
-	
 		
 		val panelMateria = new Panel(mainPanel)
 			panelMateria.layout = new VerticalLayout

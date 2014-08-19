@@ -3,7 +3,6 @@ package ar.edu.dds.ui.view
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import org.uqbar.arena.windows.SimpleWindow
-import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.tables.Table
 import ar.edu.dds.ui.domain.Nota
@@ -80,7 +79,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		.setTitle("Valor").setFixedSize(100).bindContentsToProperty("valor")
 
 		new Column<Nota>(table).setTitle("Aprobado").setFixedSize(150).
-			bindContentsToTransformer([nota|if(nota.aprobada) "SI" else "NO"])
+			bindContentsToTransformer([nota|if(nota.aprobado) "SI" else "NO"])
 
 	}
 	

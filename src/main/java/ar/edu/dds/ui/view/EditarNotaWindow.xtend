@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.bindings.DateAdapter
+import org.uqbar.arena.bindings.NotNullObservable
 
 class EditarNotaWindow extends Dialog<Nota> {
 	
@@ -28,9 +29,8 @@ class EditarNotaWindow extends Dialog<Nota> {
 		new Label(panelNota).text = "Fecha"
 		new TextBox(panelNota) => [
 			setWidth(150)
-			withFilter(new DateTextFilter)
+			//withFilter(new DateTextFilter)
 			bindValueToProperty("fecha")
-			.setTransformer(new DateAdapter)
 		]
 		
 		new Label(panelNota).text = "Descripcion"
@@ -52,6 +52,7 @@ class EditarNotaWindow extends Dialog<Nota> {
 			.setCaption("Aceptar")
 			.onClick [ | this.accept ]
 			.setAsDefault.disableOnError
+			.bindEnabled(new NotNullObservable("fecha"))
 			
 		new Button(actions)
 			.setAsDefault
