@@ -1,7 +1,9 @@
 package ar.edu.dds.ui.domain
 
 import org.joda.time.LocalDate
+import org.uqbar.commons.utils.Observable
 
+@Observable
 class Nota {
 	
 	@Property Integer valor
