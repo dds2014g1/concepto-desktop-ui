@@ -13,5 +13,9 @@ class Nota {
 		this.fecha = fecha
 		this.descripcion = descripcion
 	}
+	
+	def boolean aprobada (){
+		valor > 4
+	}
 		
 }

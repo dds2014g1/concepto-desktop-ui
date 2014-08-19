@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.tables.Table
 import ar.edu.dds.ui.domain.Nota
 import ar.edu.dds.ui.applicationModel.SeguidorCarrera
+import org.uqbar.arena.widgets.tables.Column
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	
@@ -50,8 +51,26 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		table.width = 450
 		table.bindItemsToProperty("resultado")
 		table.bindValueToProperty("materiaSeleccionada")
-		//this.describeResultsGrid(table)
+		this.describeResultsGrid(table)
 		}
+		
+		def void describeResultsGrid(Table<Nota> table) {
+		new Column<Nota>(table) //
+			.setTitle("Fecha")
+			.setFixedSize(150)
+			.bindContentsToProperty("fecha")
+
+		new Column<Nota>(table) //
+			.setTitle("Valor")
+			.setFixedSize(100)
+			.bindContentsToProperty("valor")
+
+		new Column<Nota>(table)
+			.setTitle("Aprobado")
+			.setFixedSize(150)
+			.bindContentsToTransformer([nota | if (nota.aprobada) "SI" else "NO"])
+
+	}
 		
 	
 }
