@@ -14,6 +14,8 @@ import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.bindings.PropertyAdapter
+import ar.edu.dds.ui.domain.Materia
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -43,7 +45,8 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		listado.heigth = 200
 		listado.width = 450
 		listado.bindItemsToProperty("materias")
-		listado.bindValueToProperty("materiaSeleccionada")
+			.setAdapter(new PropertyAdapter(typeof(Materia),"nombre"))
+		//listado.bindValueToProperty("materiaSeleccionada")
 	}
 
 	override protected addActions(Panel actionsPanel) {

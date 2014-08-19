@@ -67,8 +67,23 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 		this.create(materia)
 	}
 	
-	def List<Nota> search(Materia materia){ 
 	
-		//tiene que devolver un arrayList con las notas	
+	def search(String nombre){ 
+		
+		allInstances.filter[ materia |match(nombre, materia.nombre)].toList
+		
 	}
+	
+	
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue == null) {
+			return true
+		}
+		if (realValue == null) {
+			return false
+		}
+		
+		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+	
 }
