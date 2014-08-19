@@ -7,6 +7,7 @@ class Nota {
 	@Property Integer valor
 	@Property LocalDate fecha
 	@Property String descripcion
+	@Property Boolean aprobado
 		
 	new(Integer valor, LocalDate fecha, String descripcion) {
 		this.valor = valor
