@@ -9,7 +9,7 @@ class Nota {
 	@Property String descripcion
 	
 	new(){}
-		
+
 	new(Integer valor, LocalDate fecha, String descripcion) {
 		this.valor = valor
 		this.fecha = fecha
