@@ -18,14 +18,15 @@ class SeguidorCarrera implements Serializable{
 	@Property String uicacionMateria
 	@Property List<Nota> resultado
 	@Property List<Materia> materias
-	@Property String materiaSeleccionada
+	@Property String nombreMateria
+	@Property Materia materiaSeleccionada
 	@Property Nota notaSeleccionada
 
 	
 	def void search(){
 		
 		materias = new ArrayList<Materia>
-		materias = getHomeMaterias.search(materiaSeleccionada)
+		materias = getHomeMaterias.search(nombreMateria)
 		
 	}
 	

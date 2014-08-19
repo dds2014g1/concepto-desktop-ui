@@ -46,7 +46,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		listado.width = 450
 		listado.bindItemsToProperty("materias")
 			.setAdapter(new PropertyAdapter(typeof(Materia),"nombre"))
-		//listado.bindValueToProperty("materiaSeleccionada")
+		listado.bindValueToProperty("materiaSeleccionada")
 	}
 
 	override protected addActions(Panel actionsPanel) {
@@ -120,5 +120,6 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		dialog.open
 
 	}
+	
 }
 
