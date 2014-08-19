@@ -1,15 +1,15 @@
 package ar.edu.dds.ui.applicationModel
 
-import java.io.Serializable
-import org.uqbar.commons.utils.Observable
 import ar.edu.dds.ui.domain.Materia
-import java.util.List
 import ar.edu.dds.ui.domain.Nota
 import ar.edu.dds.ui.home.MateriasHome
-import org.uqbar.commons.utils.ApplicationContext
+import java.io.Serializable
 import java.util.ArrayList
+import java.util.List
+import org.uqbar.commons.utils.ApplicationContext
+import org.uqbar.commons.utils.Observable
 
-@org.uqbar.commons.utils.Observable
+@Observable
 class SeguidorCarrera implements Serializable{
 	
 	@Property Integer anioCursada

@@ -61,7 +61,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		table.heigth = 200
 		table.width = 450
 		table.bindItemsToProperty("resultado")
-		table.bindValueToProperty("materiaSeleccionada")
+		table.bindValueToProperty("notaSeleccionada")
 		this.describeResultsGrid(table)
 	}
 	
