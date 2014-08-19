@@ -30,9 +30,11 @@ class SeguidorCarrera implements Serializable{
 	}
 	
 	def void eliminarNotaSeleccionada(){
-		getHomeMaterias().delete(materiaSeleccionada)
+		
+		//hay que hacer que se pueda eliminar una nota de una materia
+		//getHomeMaterias().delete(materiaSeleccionada) 
 		this.search()
-		materiaSeleccionada = null
+		notaSeleccionada = null
 	}
 	
 	def MateriasHome getHomeMaterias() {
