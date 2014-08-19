@@ -17,6 +17,8 @@ import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
 import ar.edu.dds.ui.domain.Materia
 import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.layout.VerticalLayout
+import org.uqbar.arena.widgets.CheckBox
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -29,28 +31,32 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		title = "Seguidor de Carrera"
 
 		super.createMainTemplate(mainPanel)
-
-		this.crearDetalleDeMateria(mainPanel)
-
-		this.createResultsGrid(mainPanel)
-
-		this.createGridActions(mainPanel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
-		var searchFormPanel = new Panel(mainPanel)
-		searchFormPanel.setLayout(new ColumnLayout(2))
 
-		var labelTitulo = new Label(searchFormPanel)
+		var panelContendor = new Panel(mainPanel)
+		panelContendor.setLayout(new HorizontalLayout)
+		
+		var panelListaDeMaterias = new Panel(panelContendor)
+		panelListaDeMaterias.setLayout(new VerticalLayout)
+
+		var labelTitulo = new Label(panelListaDeMaterias)
 		labelTitulo.text = "Seguidor de carrera"
 
-		var listado = new List(mainPanel)
-		listado.heigth = 200
-		listado.width = 450
+		var listado = new List(panelListaDeMaterias)
+		listado.heigth = 300
+		listado.width = 250
 		listado.bindItemsToProperty("materias")
 			.setAdapter(new PropertyAdapter(typeof(Materia), "nombre"))
 		
 		listado.bindValueToProperty("materiaSeleccionada")
+		
+		this.crearDetalleDeMateria(panelContendor)
+		
+		this.crearTablaDeNotas(mainPanel)
+
+		this.crearAccionesDeNotas(mainPanel)
 	}
 
 	override protected addActions(Panel actionsPanel) {
@@ -59,31 +65,14 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 			.onClick [ | this.crearMateria ]
 	}
 
-	def protected createResultsGrid(Panel mainPanel) {
+	def protected crearTablaDeNotas(Panel mainPanel) {
 
 		var table = new Table<Nota>(mainPanel, typeof(Nota))
 		table.heigth = 200
 		table.width = 450
 		table.bindItemsToProperty("materiaSeleccionada.notas")
 		table.bindValueToProperty("notaSeleccionada")
-		this.describeResultsGrid(table)
-	}
-	
-	def crearDetalleDeMateria(Panel mainPanel) {
 		
-		var labelNombre = new Label(mainPanel)
-		labelNombre.bindValueToProperty("materiaSeleccionada.nombre")
-		labelNombre.fontSize = 14
-		
-		var labelAnioDeCursada = new Label(mainPanel)
-		labelAnioDeCursada.text = "Año de cursada: "
-		
-		var textBoxAnioDeCursada = new TextBox(mainPanel)
-		textBoxAnioDeCursada.width = 9
-		textBoxAnioDeCursada.bindValueToProperty("materiaSeleccionada.anioDeCursada")
-	}
-
-	def void describeResultsGrid(Table<Nota> table) {
 		new Column<Nota>(table) //
 		.setTitle("Fecha").setFixedSize(150).bindContentsToProperty("fecha")
 
@@ -94,8 +83,35 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 			bindContentsToTransformer([nota|if(nota.aprobada) "SI" else "NO"])
 
 	}
+	
+	def crearDetalleDeMateria(Panel panelPadre) {
+		
+		var detalleDeMateriaPanel = new Panel(panelPadre)
+		detalleDeMateriaPanel.setLayout(new VerticalLayout)
+		detalleDeMateriaPanel.width = 600
+		
+		var labelNombre = new Label(detalleDeMateriaPanel)
+		labelNombre.bindValueToProperty("materiaSeleccionada.nombre")
+		labelNombre.fontSize = 14
+		
+		var renglon1Panel = new Panel(detalleDeMateriaPanel)
+		renglon1Panel.layout = new HorizontalLayout
+		
+		var labelAnioDeCursada = new Label(renglon1Panel)
+		labelAnioDeCursada.text = "Año de cursada: "
+		
+		var textBoxAnioDeCursada = new TextBox(renglon1Panel)
+		textBoxAnioDeCursada.width = 50
+		textBoxAnioDeCursada.bindValueToProperty("materiaSeleccionada.anioDeCursada")
 
-	def void createGridActions(Panel mainPanel) {
+		var aproboCheckbox = new CheckBox(renglon1Panel)
+		aproboCheckbox.bindValueToProperty("materiaSeleccionada.finalAprobado")
+		
+		var labelAprobo = new Label(renglon1Panel)
+		labelAprobo.text = "Final Aprobado"
+	}
+
+	def void crearAccionesDeNotas(Panel mainPanel) {
 		var actionsPanel = new Panel(mainPanel)
 		actionsPanel.setLayout(new HorizontalLayout)
 
