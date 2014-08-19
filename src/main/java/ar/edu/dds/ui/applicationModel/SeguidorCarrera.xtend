@@ -16,6 +16,6 @@ class SeguidorCarrera implements Serializable{
 	@Property List<Nota> resultado
 	@Property List<Materia> materias
 	@Property Materia materiaSeleccionada
-	
+	@Property Nota notaSeleccionada
 	
 }
