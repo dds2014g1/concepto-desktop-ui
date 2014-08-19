@@ -1,6 +1,5 @@
 package ar.edu.dds.ui.view
 
-import ar.edu.dds.ui.domain.Materia
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
@@ -12,7 +11,7 @@ import com.uqbar.commons.StringUtils
 import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Button
 
-class EditarNotaWindow extends Dialog<Materia> {
+class EditarNotaWindow extends Dialog<Nota> {
 	
 	new(WindowOwner owner, Nota nota) {
 		super(owner, nota)

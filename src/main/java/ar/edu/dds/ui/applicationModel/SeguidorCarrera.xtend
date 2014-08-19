@@ -19,4 +19,9 @@ class SeguidorCarrera implements Serializable{
 	@Property Nota notaSeleccionada
 
 	
+	def void search(){
+		
+	}
+	
+	
 }
