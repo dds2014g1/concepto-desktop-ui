@@ -44,6 +44,12 @@ class CrearNuevaMateriaWindow extends Dialog<Materia>{
 			.setCaption("Aceptar")
 			.onClick [ | this.accept ]
 			.bindEnabled(new NotNullObservable("nombre"))
+			
+		new Button(actions)
+			.setAsDefault
+			.setCaption("Cancelar")
+			.onClick [ | this.cancel ]
+					
 	}
 	
 	override executeTask(){
