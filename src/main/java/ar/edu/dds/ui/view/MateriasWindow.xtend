@@ -12,7 +12,7 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
-
+import org.uqbar.arena.layout.HorizontalLayout
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -28,7 +28,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
 		this.createResultsGrid(mainPanel)
 
-	//this.createGridActions(mainPanel)
+		this.createGridActions(mainPanel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
@@ -74,23 +74,23 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
 	}
 
-//	def void createGridActions(Panel mainPanel) {
-//		var actionsPanel = new Panel(mainPanel)
-//		actionsPanel.setLayout(new HorizontalLayout)
-//
-//		var edit = new Button(actionsPanel)
-//			.setCaption("Editar")
-//			.onClick[|this.modificarNota]
-//
-//		var remove = new Button(actionsPanel)
-//			.setCaption("Borrar")
-//			.onClick[|modelObject.eliminarNotaSeleccionada]
-//
-//		var add = new Button(actionsPanel)
-//			.setCaption("Agregar")
-//			.onClick[|modelObject.agregarNota]
-//			
-//	}
+	def void createGridActions(Panel mainPanel) {
+		var actionsPanel = new Panel(mainPanel)
+		actionsPanel.setLayout(new HorizontalLayout)
+
+		var edit = new Button(actionsPanel)
+			.setCaption("Editar")
+			.onClick[|this.editarNota]
+
+		var remove = new Button(actionsPanel)
+			.setCaption("Borrar")
+			.onClick[|modelObject.eliminarNotaSeleccionada]
+
+		var add = new Button(actionsPanel)
+			.setCaption("Agregar")
+			.onClick[|this.agregarNota]
+			
+	}
 
 
 			
@@ -102,6 +102,10 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	def void editarNota(){
 		this.openDialog(new EditarNotaWindow(this, modelObject.notaSeleccionada))
 		
+	}
+	
+	def void agregarNota(){
+		this.openDialog(new AgregarNotaWindow(this))
 	}
 	
 	def openDialog(Dialog<?> dialog) {

@@ -7,6 +7,8 @@ class Nota {
 	@Property Integer valor
 	@Property LocalDate fecha
 	@Property String descripcion
+	
+	new(){}
 		
 	new(Integer valor, LocalDate fecha, String descripcion) {
 		this.valor = valor

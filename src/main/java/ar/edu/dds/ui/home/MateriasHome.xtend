@@ -67,4 +67,8 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 		this.create(materia)
 	}
 	
+	def List<Nota> search(Materia materia){ 
+	
+		//tiene que devolver un arrayList con las notas	
+	}
 }
