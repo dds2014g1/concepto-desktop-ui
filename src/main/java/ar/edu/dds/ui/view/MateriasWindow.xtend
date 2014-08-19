@@ -8,11 +8,11 @@ import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.tables.Table
 import ar.edu.dds.ui.domain.Nota
 import ar.edu.dds.ui.applicationModel.SeguidorCarrera
+import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
-import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.windows.Dialog
+
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -93,13 +93,20 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 //	}
 
 
+			
 	def void crearMateria(){
-		this.openDialog(new CrearMateriaWindow(this))
+		this.openDialog(new CrearNuevaMateriaWindow(this))
+		
+	}
+	
+	def void editarNota(){
+		this.openDialog(new EditarNotaWindow(this, modelObject.notaSeleccionada))
+		
 	}
 	
 	def openDialog(Dialog<?> dialog) {
-		dialog.onAccept[|modelObject.search]
 		dialog.open
-	}
 
+	}
 }
+

@@ -5,14 +5,19 @@ import ar.edu.dds.ui.domain.Materia
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.widgets.Panel
 
-class EditarMateriaWindow extends Dialog<Materia> {
+class CrearNuevaMateriaWindow extends Dialog<Materia>{
 	
-	new(WindowOwner owner, Materia model) {
-		super(owner, model)
+	new (WindowOwner owner){
+		super(owner, new Materia)
+		
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
 	}
+	
+	
+	
+	
 	
 }
