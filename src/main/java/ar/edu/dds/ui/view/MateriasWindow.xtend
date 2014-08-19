@@ -13,6 +13,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.bindings.NotNullObservable
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -86,9 +87,13 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 			.setCaption("Borrar")
 			.onClick[|modelObject.eliminarNotaSeleccionada]
 
-		var add = new Button(actionsPanel)
+		new Button(actionsPanel)
 			.setCaption("Agregar")
 			.onClick[|this.agregarNota]
+			
+		var elementSelected = new NotNullObservable("notaSeleccionada")
+		remove.bindEnabled(elementSelected)
+		edit.bindEnabled(elementSelected)
 			
 	}
 
