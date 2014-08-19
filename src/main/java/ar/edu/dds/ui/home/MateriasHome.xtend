@@ -68,9 +68,9 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 	}
 	
 	
-	def search(String nombre){ 
+	def search(String nombre) { 
 		
-		allInstances.filter[ materia |match(nombre, materia.nombre)].toList
+		allInstances.filter[ materia | match(nombre, materia.nombre) ].toList
 		
 	}
 	

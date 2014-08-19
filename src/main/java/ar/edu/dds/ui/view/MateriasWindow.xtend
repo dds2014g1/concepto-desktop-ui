@@ -16,6 +16,7 @@ import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.bindings.PropertyAdapter
 import ar.edu.dds.ui.domain.Materia
+import org.uqbar.arena.widgets.TextBox
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -29,6 +30,8 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
 		super.createMainTemplate(mainPanel)
 
+		this.crearDetalleDeMateria(mainPanel)
+
 		this.createResultsGrid(mainPanel)
 
 		this.createGridActions(mainPanel)
@@ -38,15 +41,16 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		var searchFormPanel = new Panel(mainPanel)
 		searchFormPanel.setLayout(new ColumnLayout(2))
 
-		var labelNumero = new Label(searchFormPanel)
-		labelNumero.text = "Seguidor de carrera"
+		var labelTitulo = new Label(searchFormPanel)
+		labelTitulo.text = "Seguidor de carrera"
 
 		var listado = new List(mainPanel)
 		listado.heigth = 200
 		listado.width = 450
 		listado.bindItemsToProperty("materias")
-			.setAdapter(new PropertyAdapter(typeof(Materia),"nombre"))
-		//listado.bindValueToProperty("materiaSeleccionada")
+			.setAdapter(new PropertyAdapter(typeof(Materia), "nombre"))
+		
+		listado.bindValueToProperty("materiaSeleccionada")
 	}
 
 	override protected addActions(Panel actionsPanel) {
@@ -65,6 +69,19 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		this.describeResultsGrid(table)
 	}
 	
+	def crearDetalleDeMateria(Panel mainPanel) {
+		
+		var labelNombre = new Label(mainPanel)
+		labelNombre.bindValueToProperty("materiaSeleccionada.nombre")
+		labelNombre.fontSize = 14
+		
+		var labelAnioDeCursada = new Label(mainPanel)
+		labelAnioDeCursada.text = "Año de cursada: "
+		
+		var textBoxAnioDeCursada = new TextBox(mainPanel)
+		textBoxAnioDeCursada.width = 9
+		textBoxAnioDeCursada.bindValueToProperty("materiaSeleccionada.anioDeCursada")
+	}
 
 	def void describeResultsGrid(Table<Nota> table) {
 		new Column<Nota>(table) //

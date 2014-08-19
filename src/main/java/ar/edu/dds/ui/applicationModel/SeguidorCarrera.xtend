@@ -9,8 +9,8 @@ import ar.edu.dds.ui.home.MateriasHome
 import org.uqbar.commons.utils.ApplicationContext
 import java.util.ArrayList
 
-@org.uqbar.commons.utils.Observable
-class SeguidorCarrera implements Serializable{
+@Observable
+class SeguidorCarrera implements Serializable {
 	
 	@Property Integer anioCursada
 	@Property Boolean finalDado
@@ -18,14 +18,18 @@ class SeguidorCarrera implements Serializable{
 	@Property String uicacionMateria
 	@Property List<Nota> resultado
 	@Property List<Materia> materias
-	@Property String materiaSeleccionada
+	@Property Materia materiaSeleccionada
 	@Property Nota notaSeleccionada
 
+//	def void setMateriaSeleccionada(Materia m) {
+//		this._materiaSeleccionada = m
+//		println(m.profesor)
+//	}
 	
 	def void search(){
 		
 		materias = new ArrayList<Materia>
-		materias = getHomeMaterias.search(materiaSeleccionada)
+		materias = getHomeMaterias.search("")
 		
 	}
 	
