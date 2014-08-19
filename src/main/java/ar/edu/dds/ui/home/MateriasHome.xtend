@@ -6,6 +6,8 @@ import ar.edu.dds.ui.domain.Materia
 import java.util.List
 import ar.edu.dds.ui.domain.Nota
 import org.joda.time.LocalDate
+import org.apache.commons.collections15.Predicate;
+
 
 @Observable
 class MateriasHome extends CollectionBasedHome<Materia> {
@@ -13,8 +15,6 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 	new() {
 		this.init()
 	}
-	
-	@Property Materia materiaSeleccionada
 	
 	def void init() {
 		this.create("Sistemas y Organizaciones",
@@ -36,7 +36,7 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 					))
 	}
 	
-	override def getCriterio(Materia example) {
+	override def Predicate<Materia> getCriterio(Materia example) {
 		null
 	}
 	
@@ -44,7 +44,7 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 		new Materia
 	}
 	
-	override getEntityType() {
+	override def Class<Materia> getEntityType() {
 		typeof(Materia)
 	}
 	

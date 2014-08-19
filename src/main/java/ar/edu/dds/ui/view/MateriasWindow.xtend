@@ -7,12 +7,23 @@ import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.tables.Table
-import ar.edu.dds.ui.home.MateriasHome
+import ar.edu.dds.ui.domain.Nota
+import ar.edu.dds.ui.applicationModel.SeguidorCarrera
 
-class MateriasWindow extends SimpleWindow<MateriasHome> {
+class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	
 	new(WindowOwner parent) {
-		super(parent, new MateriasHome)
+		super(parent, new SeguidorCarrera)
+	}
+	
+	override def createMainTemplate(Panel mainPanel) {
+		title = "Seguidor de Carrera"
+		//taskDescription = "Ingrese los parametros de busqueda"
+
+		super.createMainTemplate(mainPanel)
+
+		this.createResultsGrid(mainPanel)
+		//this.createGridActions(mainPanel)
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
@@ -25,12 +36,22 @@ class MateriasWindow extends SimpleWindow<MateriasHome> {
 		var table = new Table<Materia>(mainPanel, typeof(Materia))
 		table.heigth = 200
 		table.width = 450
-		table.bindItemsToProperty("objects")
-		//table.bindValueToProperty("materiaSeleccionada")
+		table.bindItemsToProperty("materias")
+		table.bindValueToProperty("materiaSeleccionada")
 	}
 	
 	override protected addActions(Panel arg0) {
 		
 	}
+	
+	def protected createResultsGrid(Panel mainPanel) {
+		var table = new Table<Nota>(mainPanel, typeof(Nota))
+		table.heigth = 200
+		table.width = 450
+		table.bindItemsToProperty("resultado")
+		table.bindValueToProperty("materiaSeleccionada")
+		//this.describeResultsGrid(table)
+		}
+		
 	
 }
