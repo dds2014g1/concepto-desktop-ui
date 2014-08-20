@@ -9,7 +9,6 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
-import org.joda.time.LocalDate
 
 class EditarNotaWindow extends Dialog<Nota> {
 	
@@ -63,7 +62,7 @@ class EditarNotaWindow extends Dialog<Nota> {
 		
 		new Button(actions)
 			.setCaption("Aceptar")
-			.onClick [ | this.accept ]
+			.onClick [ | this.close ]
 			.setAsDefault
 			.disableOnError
 			.bindEnabled(new NotNullObservable("fecha"))

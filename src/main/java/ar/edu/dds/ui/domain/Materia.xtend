@@ -11,7 +11,7 @@ class Materia extends Entity {
 	@Property String anioDeCursada
 	@Property String profesor
 	@Property Ubicacion ubicacion
-	@Property Boolean finalAprobado
+	@Property boolean finalAprobado
 	
 	@Property List<Nota> notas
 	

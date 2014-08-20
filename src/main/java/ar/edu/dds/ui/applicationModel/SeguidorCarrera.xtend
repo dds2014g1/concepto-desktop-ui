@@ -13,8 +13,8 @@ import java.util.ArrayList
 @Observable
 class SeguidorCarrera implements Serializable {
 	
-	@Property Integer anioCursada
-	@Property Boolean finalAprobado
+	@Property int anioCursada
+	@Property boolean finalAprobado
 	@Property String profesor
 	@Property Ubicacion ubicacionMateria
 	@Property List<Nota> resultado
