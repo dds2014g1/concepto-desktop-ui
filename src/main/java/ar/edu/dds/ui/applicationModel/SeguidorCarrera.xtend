@@ -7,6 +7,7 @@ import java.util.List
 import ar.edu.dds.ui.domain.Nota
 import ar.edu.dds.ui.home.MateriasHome
 import org.uqbar.commons.utils.ApplicationContext
+import ar.edu.dds.ui.domain.Ubicacion
 
 @Observable
 class SeguidorCarrera implements Serializable {
@@ -14,7 +15,7 @@ class SeguidorCarrera implements Serializable {
 	@Property Integer anioCursada
 	@Property Boolean finalDado
 	@Property String profesor
-	@Property String uicacionMateria
+	@Property Ubicacion ubicacionMateria
 	@Property List<Nota> resultado
 	@Property List<Materia> materias
 	@Property Materia materiaSeleccionada
