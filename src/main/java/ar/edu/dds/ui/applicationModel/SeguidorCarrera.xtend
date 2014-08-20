@@ -13,7 +13,7 @@ import ar.edu.dds.ui.domain.Ubicacion
 class SeguidorCarrera implements Serializable {
 	
 	@Property Integer anioCursada
-	@Property Boolean finalDado
+	@Property Boolean finalAprobado
 	@Property String profesor
 	@Property Ubicacion ubicacionMateria
 	@Property List<Nota> resultado

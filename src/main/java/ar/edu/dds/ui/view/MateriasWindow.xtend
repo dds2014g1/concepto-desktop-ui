@@ -137,7 +137,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		ubicacionSelector.allowNull(false)
 		var propiedadUbicaciones = ubicacionSelector.bindItems(new ObservableProperty(ubicacionesHome, "ubicaciones"))
 		propiedadUbicaciones.adapter = new PropertyAdapter(typeof(Ubicacion), "descripcion")
-		ubicacionSelector.bindValueToProperty("ubicacionMateria")
+		ubicacionSelector.bindValueToProperty("materiaSeleccionada.ubicacion")
 		
 		detalleDeMateriaPanel
 		
