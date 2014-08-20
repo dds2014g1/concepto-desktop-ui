@@ -1,7 +1,7 @@
 package ar.edu.dds.ui.domain
 
-import org.joda.time.LocalDate
 import org.uqbar.commons.utils.Observable
+import org.joda.time.LocalDate
 
 @Observable
 class Nota {
@@ -9,7 +9,6 @@ class Nota {
 	@Property Integer valor
 	@Property LocalDate fecha
 	@Property String descripcion
-
 	
 	new(){}
 	
@@ -20,8 +19,11 @@ class Nota {
 		this.descripcion = descripcion
 	}
 	
-	def boolean isAprobado (){
-		valor > 4
+	def boolean isAprobado () {
+		if (valor != null)
+			valor > 4
+		else
+			false
 	}
 		
 }

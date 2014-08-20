@@ -9,6 +9,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import org.joda.time.LocalDate
 
 class EditarNotaWindow extends Dialog<Nota> {
 	
@@ -34,11 +35,12 @@ class EditarNotaWindow extends Dialog<Nota> {
 		
 		
 		new Label(panelNota).text = "Fecha"
-		new TextBox(panelNota) => [
-			setWidth(150)
-			withFilter(new DateTextFilter)
-			bindValueToProperty("fecha")
-		]
+		var fechaTextBox = new TextBox(panelNota)
+		fechaTextBox.setWidth(150)
+		fechaTextBox.withFilter(new DateTextFilter)
+		
+		val binding = fechaTextBox.bindValueToProperty("fecha")
+		binding.setTransformer(new LocalDateAdapter)
 		
 		new Label(panelNota).text = "Nota"
 		new TextBox(panelNota) => [

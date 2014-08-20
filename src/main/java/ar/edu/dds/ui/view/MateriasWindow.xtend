@@ -81,7 +81,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		table.bindValueToProperty("notaSeleccionada")
 		
 		new Column<Nota>(table) //
-			.setTitle("Fecha").setFixedSize(90).bindContentsToProperty("fecha")
+			.setTitle("Fecha").setFixedSize(90).bindContentsToTransformer([nota | nota.fecha.toString("YYYY-MM-dd")])
 
 		new Column<Nota>(table) //
 			.setTitle("Valor").setFixedSize(70).bindContentsToProperty("valor")
