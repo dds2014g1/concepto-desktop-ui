@@ -6,6 +6,8 @@ import org.uqbar.commons.utils.ApplicationContext
 import ar.edu.dds.ui.home.MateriasHome
 import ar.edu.dds.ui.view.MateriasWindow
 import ar.edu.dds.ui.domain.Materia
+import ar.edu.dds.ui.domain.Ubicacion
+import ar.edu.dds.ui.home.UbicacionesHome
 
 class MateriasApplication extends Application {
 	
@@ -15,6 +17,7 @@ class MateriasApplication extends Application {
 
 	override protected Window<?> createMainWindow() {
 		ApplicationContext.instance.configureSingleton(typeof(Materia), new MateriasHome)
+		ApplicationContext.instance.configureSingleton(typeof(Ubicacion), new UbicacionesHome)
 		return new MateriasWindow(this)
 	}
 } 

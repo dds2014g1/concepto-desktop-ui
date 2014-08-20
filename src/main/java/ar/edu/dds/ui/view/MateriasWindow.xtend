@@ -18,6 +18,11 @@ import ar.edu.dds.ui.domain.Materia
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.CheckBox
+import org.uqbar.arena.widgets.Selector
+import ar.edu.dds.ui.domain.Ubicacion
+import org.uqbar.arena.bindings.ObservableProperty
+import org.uqbar.commons.utils.ApplicationContext
+import ar.edu.dds.ui.home.UbicacionesHome
 
 class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 
@@ -37,13 +42,13 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		var panelContendor = new Panel(mainPanel)
 		panelContendor.setLayout(new HorizontalLayout)
 		
-		var panelListaDeMaterias = new Panel(panelContendor)
-		panelListaDeMaterias.setLayout(new VerticalLayout)
+		var panelIzquierdo = new Panel(panelContendor)
+		panelIzquierdo.setLayout(new VerticalLayout)
 
-		var labelTitulo = new Label(panelListaDeMaterias)
+		var labelTitulo = new Label(panelIzquierdo)
 		labelTitulo.text = "Seguidor de carrera"
 
-		var listado = new List(panelListaDeMaterias)
+		var listado = new List(panelIzquierdo)
 		listado.heigth = 300
 		listado.width = 250
 		listado.bindItemsToProperty("materias")
@@ -128,6 +133,12 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		var labelUbicacion = new Label(renglon3Panel)
 		labelUbicacion.text = "Ubicacion Materia: "
 		
+		var ubicacionSelector = new Selector<Ubicacion>(renglon3Panel)
+		ubicacionSelector.allowNull(false)
+		ubicacionSelector.bindValueToProperty("materiaSeleccionada.ubicacion")
+		var propiedadUbicaciones = ubicacionSelector.bindItems(new ObservableProperty(ubicacionesHome, "ubicaciones"))
+		propiedadUbicaciones.adapter = new PropertyAdapter(typeof(Ubicacion), "descripcion")
+		
 		detalleDeMateriaPanel
 		
 	}
@@ -173,6 +184,10 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	def openDialog(Dialog<?> dialog) {
 		dialog.open
 
+	}
+	
+	def getUbicacionesHome() {
+		ApplicationContext::instance.getSingleton(typeof(Ubicacion)) as UbicacionesHome
 	}
 	
 }

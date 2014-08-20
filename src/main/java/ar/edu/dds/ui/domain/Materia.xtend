@@ -10,10 +10,15 @@ class Materia extends Entity {
 	@Property String nombre
 	@Property String anioDeCursada
 	@Property String profesor
-	@Property String ubicacion
+	@Property Ubicacion ubicacion
 	@Property Boolean finalAprobado
 	
 	@Property List<Nota> notas
+	
+	def setUbicacion(Ubicacion ubicacion) {
+		println("Seteando ubicacion: " + ubicacion.toString)
+		this._ubicacion = ubicacion
+	}
 	
 	
 }
