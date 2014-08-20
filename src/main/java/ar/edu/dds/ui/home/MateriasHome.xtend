@@ -67,14 +67,6 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 		this.create(materia)
 	}
 	
-	
-	def search(String nombre) { 
-		
-		allInstances.filter[ materia | match(nombre, materia.nombre) ].toList
-		
-	}
-	
-	
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue == null) {
 			return true

@@ -8,6 +8,7 @@ import ar.edu.dds.ui.domain.Nota
 import ar.edu.dds.ui.home.MateriasHome
 import org.uqbar.commons.utils.ApplicationContext
 import ar.edu.dds.ui.domain.Ubicacion
+import java.util.ArrayList
 
 @Observable
 class SeguidorCarrera implements Serializable {
@@ -27,7 +28,9 @@ class SeguidorCarrera implements Serializable {
 //	}
 	
 	def void search(){
-		materias = homeMaterias.allInstances
+		
+		materias = new ArrayList<Materia>
+		materias = homeMaterias.allInstances.toList
 	}
 	
 	def void eliminarNotaSeleccionada(){

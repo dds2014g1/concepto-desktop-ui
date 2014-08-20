@@ -182,6 +182,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	}
 	
 	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[|modelObject.search]
 		dialog.open
 
 	}
