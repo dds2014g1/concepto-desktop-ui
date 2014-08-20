@@ -4,7 +4,6 @@ import ar.edu.dds.ui.domain.Nota
 import org.uqbar.arena.bindings.NotNullObservable
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.CheckBox
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
@@ -13,10 +12,19 @@ import org.uqbar.arena.windows.WindowOwner
 
 class EditarNotaWindow extends Dialog<Nota> {
 	
+	Nota notaSave
+	
 	new(WindowOwner owner, Nota nota) {
 		super(owner, nota)
 		title = "Editar Nota"
 		taskDescription = "Ingrese los nuevos valores"
+		
+		notaSave = new Nota
+		
+		notaSave.valor       = nota.valor
+		notaSave.descripcion = nota.descripcion
+		notaSave.fecha       = nota.fecha
+	
 	}
 	
 
@@ -65,5 +73,13 @@ class EditarNotaWindow extends Dialog<Nota> {
 			.onClick [ | this.cancel ]
 	}
 	
+	override cancel(){
+		
+			modelObject.valor 		= notaSave.valor
+			modelObject.descripcion = notaSave.descripcion
+			modelObject.fecha		= notaSave.fecha
+			
+			super.cancel
+	}
 
 }
