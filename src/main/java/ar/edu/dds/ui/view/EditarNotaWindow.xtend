@@ -32,15 +32,19 @@ class EditarNotaWindow extends Dialog<Nota> {
 			bindValueToProperty("fecha")
 		]
 		
+		new Label(panelNota).text = "Nota"
+		new TextBox(panelNota) => [
+			setWidth(150)
+			bindValueToProperty("valor")
+			
+		]
+		
 		new Label(panelNota).text = "Descripcion"
 		new TextBox(panelNota) => [
 			setWidth(150)
 			bindValueToProperty("descripcion")
 			
 		]
-		
-		new Label(panelNota).text = "Aprobado"
-		new CheckBox(panelNota).bindValueToProperty("aprobado")
 		
 	}
 
@@ -50,8 +54,10 @@ class EditarNotaWindow extends Dialog<Nota> {
 		new Button(actions)
 			.setCaption("Aceptar")
 			.onClick [ | this.accept ]
-			.setAsDefault.disableOnError
+			.setAsDefault
+			.disableOnError
 			.bindEnabled(new NotNullObservable("fecha"))
+			
 			
 		new Button(actions)
 			.setAsDefault
@@ -59,4 +65,5 @@ class EditarNotaWindow extends Dialog<Nota> {
 			.onClick [ | this.cancel ]
 	}
 	
+
 }
