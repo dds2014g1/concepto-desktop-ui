@@ -182,12 +182,15 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	}
 	
 	def void editarNota(){
-		this.openDialog(new EditarNotaWindow(this, modelObject.notaSeleccionada))
+		this.openDialog(new EditarNotaWindow(this, modelObject))
 		
 	}
 	
-	def void agregarNota(){
-		this.openDialog(new AgregarNotaWindow(this))
+	def void agregarNota() {
+		var nuevaNota = new Nota
+		modelObject.materiaSeleccionada.notas.add(nuevaNota)
+		modelObject.notaSeleccionada = nuevaNota
+		this.openDialog(new EditarNotaWindow(this, modelObject))
 	}
 	
 	def openDialog(Dialog<?> dialog) {

@@ -9,21 +9,22 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import ar.edu.dds.ui.applicationModel.SeguidorCarrera
 
-class EditarNotaWindow extends Dialog<Nota> {
+class EditarNotaWindow extends Dialog<SeguidorCarrera> {
 	
 	Nota notaSave
 	
-	new(WindowOwner owner, Nota nota) {
-		super(owner, nota)
+	new(WindowOwner owner, SeguidorCarrera seguidorCarrera) {
+		super(owner, seguidorCarrera)
 		title = "Editar Nota"
 		taskDescription = "Ingrese los nuevos valores"
 		
 		notaSave = new Nota
 		
-		notaSave.valor       = nota.valor
-		notaSave.descripcion = nota.descripcion
-		notaSave.fecha       = nota.fecha
+		notaSave.valor       = seguidorCarrera.notaSeleccionada.valor
+		notaSave.descripcion = seguidorCarrera.notaSeleccionada.descripcion
+		notaSave.fecha       = seguidorCarrera.notaSeleccionada.fecha
 	
 	}
 	
@@ -38,20 +39,20 @@ class EditarNotaWindow extends Dialog<Nota> {
 		fechaTextBox.setWidth(150)
 		fechaTextBox.withFilter(new DateTextFilter)
 		
-		val binding = fechaTextBox.bindValueToProperty("fecha")
+		val binding = fechaTextBox.bindValueToProperty("notaSeleccionada.fecha")
 		binding.setTransformer(new LocalDateAdapter)
 		
 		new Label(panelNota).text = "Nota"
 		new TextBox(panelNota) => [
 			setWidth(150)
-			bindValueToProperty("valor")
+			bindValueToProperty("notaSeleccionada.valor")
 			
 		]
 		
 		new Label(panelNota).text = "Descripcion"
 		new TextBox(panelNota) => [
 			setWidth(150)
-			bindValueToProperty("descripcion")
+			bindValueToProperty("notaSeleccionada.descripcion")
 			
 		]
 		
@@ -65,7 +66,7 @@ class EditarNotaWindow extends Dialog<Nota> {
 			.onClick [ | this.close ]
 			.setAsDefault
 			.disableOnError
-			.bindEnabled(new NotNullObservable("fecha"))
+			.bindEnabled(new NotNullObservable("notaSeleccionada.fecha"))
 			
 			
 		new Button(actions)
@@ -76,9 +77,9 @@ class EditarNotaWindow extends Dialog<Nota> {
 	
 	override cancel(){
 		
-			modelObject.valor 		= notaSave.valor
-			modelObject.descripcion = notaSave.descripcion
-			modelObject.fecha		= notaSave.fecha
+			modelObject.notaSeleccionada.valor 		= notaSave.valor
+			modelObject.notaSeleccionada.descripcion = notaSave.descripcion
+			modelObject.notaSeleccionada.fecha		= notaSave.fecha
 			
 			super.cancel
 	}
