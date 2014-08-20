@@ -49,7 +49,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		labelTitulo.text = "Seguidor de carrera"
 
 		var listado = new List(panelIzquierdo)
-		listado.heigth = 300
+		listado.heigth = 385
 		listado.width = 250
 		listado.bindItemsToProperty("materias")
 			.setAdapter(new PropertyAdapter(typeof(Materia), "nombre"))
@@ -70,6 +70,9 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 	}
 
 	def protected crearTablaDeNotas(Panel panelPadre) {
+		
+		var notasLabel = new Label(panelPadre)
+		notasLabel.text = "Notas de cursada: "
 
 		var table = new Table<Nota>(panelPadre, typeof(Nota))
 		table.heigth = 200
@@ -78,13 +81,16 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		table.bindValueToProperty("notaSeleccionada")
 		
 		new Column<Nota>(table) //
-		.setTitle("Fecha").setFixedSize(150).bindContentsToProperty("fecha")
+			.setTitle("Fecha").setFixedSize(90).bindContentsToProperty("fecha")
 
 		new Column<Nota>(table) //
-		.setTitle("Valor").setFixedSize(100).bindContentsToProperty("valor")
+			.setTitle("Valor").setFixedSize(70).bindContentsToProperty("valor")
+		
+		new Column<Nota>(table) //
+			.setTitle("Descripción").setFixedSize(190).bindContentsToProperty("descripcion")
 
-		new Column<Nota>(table).setTitle("Aprobado").setFixedSize(150).
-			bindContentsToTransformer([nota|if(nota.aprobado) "SI" else "NO"])
+		new Column<Nota>(table).setTitle("Aprobado").setFixedSize(30)
+			.bindContentsToTransformer([nota|if(nota.aprobado) "SI" else "NO"])
 
 	}
 	
@@ -97,6 +103,7 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		var labelNombre = new Label(detalleDeMateriaPanel)
 		labelNombre.bindValueToProperty("materiaSeleccionada.nombre")
 		labelNombre.fontSize = 14
+		labelNombre.heigth = 50
 		
 		// Renglón 1
 		var renglon1Panel = new Panel(detalleDeMateriaPanel)
@@ -126,12 +133,14 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		textBoxProfesor.bindValueToProperty("materiaSeleccionada.profesor")
 		textBoxProfesor.width = 150
 		
+		
 		// Renglón 3
 		var renglon3Panel = new Panel(detalleDeMateriaPanel)
 		renglon3Panel.layout = new HorizontalLayout
 		
 		var labelUbicacion = new Label(renglon3Panel)
 		labelUbicacion.text = "Ubicacion Materia: "
+		labelUbicacion.heigth = 50
 		
 		var ubicacionSelector = new Selector<Ubicacion>(renglon3Panel)
 		ubicacionSelector.allowNull(false)
@@ -147,18 +156,18 @@ class MateriasWindow extends SimpleWindow<SeguidorCarrera> {
 		var actionsPanel = new Panel(mainPanel)
 		actionsPanel.setLayout(new HorizontalLayout)
 
+		new Button(actionsPanel)
+			.setCaption("Agregar")
+			.onClick[|this.agregarNota]
+		
+		var remove = new Button(actionsPanel)
+			.setCaption("Eliminar")
+			.onClick[|modelObject.eliminarNotaSeleccionada]
+
 		var edit = new Button(actionsPanel)
 			.setCaption("Editar")
 			.onClick[|this.editarNota]
 
-		var remove = new Button(actionsPanel)
-			.setCaption("Borrar")
-			.onClick[|modelObject.eliminarNotaSeleccionada]
-
-		new Button(actionsPanel)
-			.setCaption("Agregar")
-			.onClick[|this.agregarNota]
-			
 		var elementSelected = new NotNullObservable("notaSeleccionada")
 		remove.bindEnabled(elementSelected)
 		edit.bindEnabled(elementSelected)
