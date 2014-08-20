@@ -51,9 +51,9 @@ class CrearNuevaMateriaWindow extends Dialog<Materia>{
 					
 	}
 	
-	override executeTask(){
+	override accept(){
 		materiasHome.create(modelObject)
-		super.executeTask()
+		super.accept()
 	}
 	
 	def materiasHome(){
