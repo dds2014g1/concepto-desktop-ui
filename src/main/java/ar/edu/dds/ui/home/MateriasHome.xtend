@@ -7,7 +7,7 @@ import java.util.List
 import ar.edu.dds.ui.domain.Nota
 import org.joda.time.LocalDate
 import org.apache.commons.collections15.Predicate;
-
+import ar.edu.dds.ui.domain.Ubicacion
 
 @Observable
 class MateriasHome extends CollectionBasedHome<Materia> {
@@ -21,7 +21,7 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 					"2012",
 					true,
 					"Oscal Díaz",
-					"Anual 2012", 
+					new Ubicacion(1, 1), 
 					newArrayList(new Nota(7, new LocalDate(2012, 5, 5), "1er Parcial"),
 								 new Nota(8, new LocalDate(2012, 9, 1), "2do Parcial")
 					))
@@ -30,7 +30,7 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 					"2013",
 					true,
 					"Nicolás Scarcella",
-					"Anual 2013", 
+					new Ubicacion(2, 1), 
 					newArrayList(new Nota(8, new LocalDate(2013, 5, 1), "1er Parcial"),
 								 new Nota(10, new LocalDate(2013, 10, 15), "2do Parcial")
 					))
@@ -53,7 +53,7 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 					String anioDeCursada,
 					Boolean finalAprobado, 
 					String profesor, 
-					String ubicacion,
+					Ubicacion ubicacion,
 					List<Nota> notas) {
 		
 		val materia = new Materia
