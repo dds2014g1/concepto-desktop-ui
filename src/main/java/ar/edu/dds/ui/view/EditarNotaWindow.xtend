@@ -1,16 +1,15 @@
 package ar.edu.dds.ui.view
 
-import org.uqbar.arena.windows.Dialog
-import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.windows.WindowOwner
 import ar.edu.dds.ui.domain.Nota
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.CheckBox
-import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.bindings.DateAdapter
 import org.uqbar.arena.bindings.NotNullObservable
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.widgets.CheckBox
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.widgets.Panel
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.windows.Dialog
+import org.uqbar.arena.windows.WindowOwner
 
 class EditarNotaWindow extends Dialog<Nota> {
 	
@@ -29,7 +28,7 @@ class EditarNotaWindow extends Dialog<Nota> {
 		new Label(panelNota).text = "Fecha"
 		new TextBox(panelNota) => [
 			setWidth(150)
-			//withFilter(new DateTextFilter)
+			withFilter(new DateTextFilter)
 			bindValueToProperty("fecha")
 		]
 		
