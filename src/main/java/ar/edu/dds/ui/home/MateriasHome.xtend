@@ -34,6 +34,26 @@ class MateriasHome extends CollectionBasedHome<Materia> {
 					newArrayList(new Nota(8, new LocalDate(2013, 5, 1), "1er Parcial"),
 								 new Nota(10, new LocalDate(2013, 10, 15), "2do Parcial")
 					))
+					
+		this.create("Arquitectura de computadoras",
+					"2012",
+					false,
+					"Roberto Tenuta",
+					new Ubicacion(2, 1), 
+					newArrayList(new Nota(4, new LocalDate(2012, 5, 5), "1er Parcial"),
+								 new Nota(6, new LocalDate(2012, 9, 1), "2do Parcial"),
+								 new Nota(7, new LocalDate(2012, 10, 3), "TP")
+					))
+					
+		this.create("Técnicas Avanzadas de Programación",
+					"2014",
+					true,
+					"Demian Alonso",
+					new Ubicacion(1, 3), 
+					newArrayList(new Nota(8, new LocalDate(2012, 5, 5), "1er Parcial"),
+								 new Nota(7, new LocalDate(2012, 9, 1), "2do Parcial"),
+								 new Nota(8, new LocalDate(2012, 10, 3), "TP")
+					))
 	}
 	
 	override def Predicate<Materia> getCriterio(Materia example) {

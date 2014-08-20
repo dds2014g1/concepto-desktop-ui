@@ -6,7 +6,7 @@ import org.joda.time.LocalDate
 @Observable
 class Nota {
 	
-	@Property int valor
+	@Property Integer valor
 	@Property LocalDate fecha
 	@Property String descripcion
 	
@@ -20,7 +20,11 @@ class Nota {
 	}
 	
 	def boolean isAprobado () {
-		valor > 4
+		valor != null && valor > 4
+	}
+	
+	def Boolean estaCompleta() {
+		valor != null && fecha != null
 	}
 		
 }

@@ -77,9 +77,14 @@ class EditarNotaWindow extends Dialog<SeguidorCarrera> {
 	
 	override cancel(){
 		
-			modelObject.notaSeleccionada.valor 		= notaSave.valor
-			modelObject.notaSeleccionada.descripcion = notaSave.descripcion
-			modelObject.notaSeleccionada.fecha		= notaSave.fecha
+			if (notaSave.estaCompleta) {
+				modelObject.notaSeleccionada.valor 		= notaSave.valor
+				modelObject.notaSeleccionada.descripcion = notaSave.descripcion
+				modelObject.notaSeleccionada.fecha		= notaSave.fecha
+			} else {
+				modelObject.materiaSeleccionada.notas.remove(modelObject.notaSeleccionada)
+				modelObject.notaSeleccionada = null
+			}
 			
 			super.cancel
 	}
